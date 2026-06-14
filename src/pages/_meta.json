@@ -2,12 +2,26 @@
     "index": {
         "title": "Home",
         "theme": {
-            "breadcrumb": false
+            "breadcrumb": false,
+            "layout": "full"
         }
     },
-    "chapter1": "Chapter 1: Setup",
-    "chapter2": "Chapter 2: Basic Linux Command Guide",
-    "chapter3": "Chapter 3: SSH Setup Guide on Ubuntu with Multipass",
-    "chapter4": "Chapter 4: Users and Groups in Ubuntu",
-    "chapter5": "Chapter 5: Installing GitLab on Ubuntu Server"
+    "setup": {
+        "title": "Setup",
+        "theme": {
+            "sidebar": true
+        }
+    },
+    "linux": {
+        "title": "Linux Basics"
+    },
+    "devops": {
+        "title": "DevOps Tools"
+    },
+    "docker": {
+        "title": "Docker"
+    },
+    "cicd": {
+        "title": "CI/CD"
+    }
 }

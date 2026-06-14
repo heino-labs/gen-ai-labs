@@ -1,27 +1,312 @@
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
-.cards.cards {
-    gap: 2rem;
+/* ===========================================================
+   Design tokens
+   =========================================================== */
+:root {
+    --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-display: "Sora", var(--font-sans);
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --bg: #f6f7fb;
+    --bg-soft: #ffffff;
+    --fg: #11131c;
+    --fg-soft: #4a4f63;
+    --muted: #7a8094;
+    --border: rgba(17, 19, 28, 0.08);
+    --card: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(17, 19, 28, 0.08);
+    --glass-blur: 16px;
+    --brand: #6d4bff;
+    --ring: rgba(124, 92, 255, 0.45);
 }
 
-.cards span {
-    margin: auto;
+.dark {
+    --bg: #070711;
+    --bg-soft: #0d0d1a;
+    --fg: #eef0fb;
+    --fg-soft: #b6bad0;
+    --muted: #8186a6;
+    --border: rgba(255, 255, 255, 0.08);
+    --card: rgba(255, 255, 255, 0.045);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --brand: #9d86ff;
+    --ring: rgba(124, 92, 255, 0.6);
 }
 
-.dark .cards.cards a {
-    border-color: rgb(150, 150, 150);
+* {
+    border-color: var(--border);
 }
 
-.dark .cards.cards a:hover {
-    border-color: white;
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
-button.nx-flex.nx-items-center.nx-gap-1\.5.nx-transition.nx-text-xs.nx-font-medium.nx-text-gray-500.hover\:nx-text-gray-900.dark\:nx-text-gray-400.dark\:hover\:nx-text-gray-100.contrast-more\:nx-text-gray-800.contrast-more\:dark\:nx-text-gray-50 {
-    background-color: bisque;
-    padding: 5px;
-    border-radius: 4px;
-    width: 180px;
-    font-weight: bold;
-    color: black;
-    padding-left: 45px;
+body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: rgba(124, 92, 255, 0.35);
+    color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #7c5cff, #22d3ee);
+    border-radius: 999px;
+    border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #9d86ff, #2dd4bf);
+}
+
+/* ===========================================================
+   Reusable utilities
+   =========================================================== */
+@layer components {
+    .glass {
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    }
+
+    .text-gradient {
+        background: linear-gradient(120deg, #7c5cff, #22d3ee 55%, #f472b6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .text-gradient-warm {
+        background: linear-gradient(120deg, #f472b6, #fbbf24);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .ring-focus {
+        outline: none;
+    }
+    .ring-focus:focus-visible {
+        box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ring);
+    }
+
+    .card-hover {
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .card-hover:hover {
+        transform: translateY(-4px);
+        border-color: rgba(124, 92, 255, 0.4);
+        box-shadow: 0 24px 60px -20px rgba(124, 92, 255, 0.45);
+    }
+
+    .hairline {
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--border),
+            transparent
+        );
+    }
+}
+
+/* Aurora background blobs */
+.aurora-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.28;
+    will-change: transform;
+    pointer-events: none;
+}
+.dark .aurora-blob {
+    opacity: 0.42;
+}
+
+/* Animated gradient text helper */
+.animate-text-grad {
+    background-size: 200% 200%;
+}
+
+/* ===========================================================
+   Article / MDX typography
+   =========================================================== */
+.prose-doc {
+    color: var(--fg-soft);
+    font-size: 1.025rem;
+    line-height: 1.75;
+}
+.prose-doc h1 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin: 0 0 1.25rem;
+    scroll-margin-top: 6rem;
+}
+.prose-doc h2 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    margin: 2.6rem 0 1rem;
+    padding-top: 0.4rem;
+    scroll-margin-top: 6rem;
+    position: relative;
+}
+.prose-doc h2::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 1.1rem;
+    height: 1.1rem;
+    width: 4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #7c5cff, #22d3ee);
+}
+.prose-doc h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 1.8rem 0 0.7rem;
+    scroll-margin-top: 6rem;
+}
+.prose-doc h4 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 1.4rem 0 0.5rem;
+}
+.prose-doc p {
+    margin: 0 0 1.15rem;
+}
+.prose-doc a {
+    color: var(--brand);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(124, 92, 255, 0.35);
+    transition: border-color 0.2s, color 0.2s;
+}
+.prose-doc a:hover {
+    border-color: var(--brand);
+}
+.prose-doc strong {
+    color: var(--fg);
+    font-weight: 700;
+}
+.prose-doc ul,
+.prose-doc ol {
+    margin: 0 0 1.2rem;
+    padding-left: 1.4rem;
+}
+.prose-doc ul {
+    list-style: none;
+    padding-left: 1.2rem;
+}
+.prose-doc ul > li {
+    position: relative;
+    padding-left: 1.1rem;
+    margin: 0.4rem 0;
+}
+.prose-doc ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    height: 6px;
+    width: 6px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #7c5cff, #22d3ee);
+}
+.prose-doc ol {
+    list-style: decimal;
+}
+.prose-doc ol > li {
+    margin: 0.4rem 0;
+    padding-left: 0.3rem;
+}
+.prose-doc ol > li::marker {
+    color: var(--brand);
+    font-weight: 700;
+}
+.prose-doc blockquote {
+    margin: 1.4rem 0;
+    padding: 0.6rem 1.1rem;
+    border-left: 3px solid var(--brand);
+    background: rgba(124, 92, 255, 0.06);
+    border-radius: 0 0.8rem 0.8rem 0;
+    color: var(--fg-soft);
+}
+.prose-doc hr {
+    border: 0;
+    height: 1px;
+    margin: 2.4rem 0;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.prose-doc img {
+    border-radius: 1rem;
+    margin: 1.5rem auto;
+    max-width: 100%;
+}
+.prose-doc table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.4rem 0;
+    font-size: 0.95rem;
+}
+.prose-doc th,
+.prose-doc td {
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+}
+.prose-doc th {
+    background: rgba(124, 92, 255, 0.08);
+    color: var(--fg);
+    font-weight: 600;
+}
+
+/* Inline code */
+.prose-doc :not(pre) > code {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85em;
+    padding: 0.15em 0.45em;
+    border-radius: 0.45rem;
+    background: rgba(124, 92, 255, 0.12);
+    color: var(--brand);
+    border: 1px solid rgba(124, 92, 255, 0.18);
+    white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
 }

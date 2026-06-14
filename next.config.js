@@ -1,24 +1,28 @@
-const withNextra = require("nextra")({
-    theme: "nextra-theme-docs",
-    themeConfig: "./theme.config.jsx",
+const withMDX = require("@next/mdx")({
+    extension: /\.mdx?$/,
+    options: {
+        providerImportSource: "@mdx-js/react",
+    },
 });
 
+/** @type {import('next').NextConfig} */
 const config = {
     output: "export",
     images: {
         unoptimized: true,
     },
     reactStrictMode: true,
+    pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+    env: {
+        NEXT_PUBLIC_BASE_PATH: "",
+    },
 };
 
-const isGithubActions = true;//process.env.GITHUB_ACTIONS || false;
-if (isGithubActions) {
-    //const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '');
-    const repo = 'gh-pages'.replace(/.*?\//, '');
-
-    config.assetPrefix = `/${repo}/`
-    config.basePath = `/${repo}`
+if (process.env.GITHUB_ACTIONS) {
+    const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, "");
+    config.assetPrefix = `/${repo}/`;
+    config.basePath = `/${repo}`;
+    config.env.NEXT_PUBLIC_BASE_PATH = `/${repo}`;
 }
-console.log(config);
 
-module.exports = withNextra(config);
+module.exports = withMDX(config);
