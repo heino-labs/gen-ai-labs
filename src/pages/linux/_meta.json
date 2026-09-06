@@ -1,5 +1,7 @@
 {
-    "index": "Linux Commands",
+    "index": "Khoá Linux",
+    "setup": "Setup · Install Ubuntu",
+    "commands": "Linux Commands",
     "ssh": "SSH Setup Guide",
     "users-groups": "Users & Groups"
 }

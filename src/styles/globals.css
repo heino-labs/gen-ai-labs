@@ -268,11 +268,30 @@ body {
     margin: 1.5rem auto;
     max-width: 100%;
 }
+.prose-doc .table-wrap {
+    overflow-x: auto;
+    margin: 1.4rem 0;
+}
 .prose-doc table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.4rem 0;
     font-size: 0.95rem;
+}
+.prose-doc .table-wrap table {
+    margin: 0;
+}
+.course-md pre {
+    overflow-x: auto;
+    margin: 1.2rem 0;
+    padding: 1rem 1.1rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--border);
+    background: rgba(124, 92, 255, 0.06);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--fg);
 }
 .prose-doc th,
 .prose-doc td {

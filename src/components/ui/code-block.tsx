@@ -3,7 +3,6 @@ import { Highlight, type PrismTheme } from "prism-react-renderer";
 import { Check, Copy, TerminalSquare } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-/** Aurora-tuned syntax theme. */
 const auroraTheme: PrismTheme = {
     plain: { color: "#e6e8f5", backgroundColor: "transparent" },
     styles: [
@@ -106,7 +105,6 @@ export function CodeBlock({ children }: { children?: ReactNode }) {
                 </button>
             </div>
 
-            {/* code */}
             <Highlight code={code} language={language} theme={auroraTheme}>
                 {({ className, style, tokens, getLineProps, getTokenProps }) => (
                     <pre

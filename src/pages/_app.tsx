@@ -11,14 +11,17 @@ import { mdxComponents } from "@/components/mdx/mdx-components";
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    const isHome = router.pathname === "/";
+    const bare =
+        router.pathname === "/" ||
+        router.pathname === "/course" ||
+        router.pathname.startsWith("/course/");
 
     return (
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <MDXProvider components={mdxComponents}>
                 <div className="font-sans">
                     <AuroraBackground />
-                    {isHome ? (
+                    {bare ? (
                         <Component {...pageProps} />
                     ) : (
                         <DocLayout>

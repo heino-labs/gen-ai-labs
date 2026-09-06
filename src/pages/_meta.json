@@ -6,22 +6,16 @@
             "layout": "full"
         }
     },
-    "setup": {
-        "title": "Setup",
-        "theme": {
-            "sidebar": true
-        }
+    "course": {
+        "title": "AI BA/Tester Course"
     },
     "linux": {
-        "title": "Linux Basics"
+        "title": "Linux Course"
     },
     "devops": {
-        "title": "DevOps Tools"
+        "title": "DevOps Course"
     },
     "docker": {
-        "title": "Docker"
-    },
-    "cicd": {
-        "title": "CI/CD"
+        "title": "Docker Course"
     }
 }

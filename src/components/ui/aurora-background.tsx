@@ -1,9 +1,5 @@
 import { cn } from "@/lib/cn";
 
-/**
- * Fixed, GPU-accelerated aurora gradient field rendered behind all content.
- * Pure CSS animation — zero runtime cost, respects prefers-reduced-motion.
- */
 export function AuroraBackground({ className }: { className?: string }) {
     return (
         <div
@@ -16,7 +12,6 @@ export function AuroraBackground({ className }: { className?: string }) {
             {/* base wash */}
             <div className="absolute inset-0 bg-[var(--bg)]" />
 
-            {/* aurora blobs — concentrated up top so reading areas stay calm */}
             <div
                 className="aurora-blob animate-aurora-1 left-[-12%] top-[-18%] h-[42vw] w-[42vw]"
                 style={{
@@ -39,10 +34,8 @@ export function AuroraBackground({ className }: { className?: string }) {
                 }}
             />
 
-            {/* grid overlay */}
             <div className="absolute inset-0 bg-grid-fade [background-size:46px_46px] opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_60%)]" />
 
-            {/* wash that fades the aurora into the page so content sits on calm ground */}
             <div className="absolute inset-x-0 top-[34vh] bottom-0 bg-gradient-to-b from-transparent via-[var(--bg)] to-[var(--bg)]" />
         </div>
     );

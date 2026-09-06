@@ -7,6 +7,11 @@ import {
     FlaskConical,
     Sparkles,
     BookOpen,
+    MessageSquare,
+    Briefcase,
+    ShieldCheck,
+    Bot,
+    Flag,
     type LucideIcon,
 } from "lucide-react";
 
@@ -19,6 +24,11 @@ const map: Record<string, LucideIcon> = {
     FlaskConical,
     Sparkles,
     BookOpen,
+    MessageSquare,
+    Briefcase,
+    ShieldCheck,
+    Bot,
+    Flag,
 };
 
 export function Icon({
