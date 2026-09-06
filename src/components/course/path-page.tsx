@@ -134,12 +134,8 @@ export function CoursePathPage() {
                     </div>
                 </section>
 
-                {/* 3 tiers */}
                 <section className="border-t border-[var(--border)] px-4 py-20 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-5xl">
-                        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-                            3 tầng — không hơn
-                        </p>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
                             {tiers.map((t, i) => (
                                 <motion.div
@@ -237,32 +233,6 @@ export function CoursePathPage() {
                     </div>
                 </section>
 
-                {/* Lesson engine */}
-                <section className="border-t border-[var(--border)] px-4 py-20 sm:px-6 lg:px-8">
-                    <div className="mx-auto max-w-5xl">
-                        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-                            Lesson engine
-                        </p>
-                        <h2 className="mt-3 font-display text-2xl font-bold text-[var(--fg)]">
-                            Mọi bài học cùng một công thức
-                        </h2>
-                        <div className="mt-8 flex flex-wrap gap-2">
-                            {lessonEngine.map((step, i) => (
-                                <span
-                                    key={step}
-                                    className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-soft)]/50 px-3 py-2 font-mono text-[11px] text-[var(--fg-soft)]"
-                                >
-                                    <span className="text-[var(--muted)]">
-                                        {String(i + 1).padStart(2, "0")}
-                                    </span>
-                                    {step}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* CTA */}
                 <section className="px-4 pb-28 sm:px-6 lg:px-8">
                     <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-[var(--card-border)] px-8 py-14 text-center sm:px-16">
                         <div className="absolute inset-0 -z-10 bg-aurora-grad opacity-[0.12]" />

@@ -60,11 +60,19 @@ export function markdownToHtml(md: string): string {
 
         if (line.startsWith("```")) {
             if (inCode) {
-                out.push(
-                    `<pre><code class="language-${codeLang}">${escapeHtml(
-                        codeBuf.join("\n")
-                    )}</code></pre>`
-                );
+                if (codeLang === "mermaid") {
+                    out.push(
+                        `<pre class="mermaid"><code class="language-mermaid">${escapeHtml(
+                            codeBuf.join("\n")
+                        )}</code></pre>`
+                    );
+                } else {
+                    out.push(
+                        `<pre><code class="language-${codeLang}">${escapeHtml(
+                            codeBuf.join("\n")
+                        )}</code></pre>`
+                    );
+                }
                 inCode = false;
                 codeBuf = [];
                 codeLang = "";

@@ -317,6 +317,37 @@ body {
     white-space: nowrap;
 }
 
+/* Mermaid diagrams */
+.course-md pre.mermaid {
+    display: none;
+}
+.course-md pre.mermaid-rendered {
+    display: block;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    text-align: center;
+}
+.course-md pre.mermaid-rendered svg {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.course-md pre.mermaid-error {
+    display: block;
+    padding: 1rem 1.1rem;
+    border-radius: 0.9rem;
+    border: 1px dashed rgba(239, 68, 68, 0.5);
+    background: rgba(239, 68, 68, 0.06);
+    color: #ef4444;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.82rem;
+    white-space: pre-wrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

@@ -9,6 +9,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { Icon } from "@/components/ui/icon";
+import { MermaidRenderer } from "@/components/ui/mermaid-renderer";
 import { cn } from "@/lib/cn";
 
 type NavTarget = {
@@ -159,6 +160,8 @@ export function CourseShell({
                         </div>
 
                         {children}
+
+                        <MermaidRenderer />
 
                         {(prev || next) && (
                             <nav className="mt-14 grid gap-4 sm:grid-cols-2">
