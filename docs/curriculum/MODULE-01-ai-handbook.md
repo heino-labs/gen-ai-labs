@@ -1,12 +1,12 @@
 # MODULE 1 — AI Handbook & Cách đọc
 
-> **Pha:** 0 · KHỞI ĐỘNG — Trước khi bước vào nền tảng
+> **Pha:** 0 · KHỞI ĐỘNG — định vị trước khi bước vào nền tảng
 >
 > **Năng lực cốt lõi:** Understand
 >
 > **AI Handbook:** ch.00 (Start Here) · ch.13 (Cách đọc Handbook) · ch.14 (Core Message)
 >
-> **Project xuyên suốt:** E-commerce Checkout · **Công cụ:** — (không có AI chính)
+> **Project xuyên suốt:** E-commerce Checkout
 >
 > **Asset xuất ra:** `/lab/personal-map.md` + Personal AI Code of Conduct
 >
@@ -14,25 +14,31 @@
 
 ---
 
-## Vì sao module này nằm ở đó
+## Vì sao có module này
 
-Mọi module khác trong khoá đều học bằng **thực hành**. Nhưng trước khi thực hành,
-bạn cần một **ngôn ngữ chung** và một **hợp đồng cá nhân** với cách bạn sẽ làm việc
-với AI. AI Handbook cung cấp hai thứ đó:
+Mọi phần còn lại của khoá học đều học bằng **làm**. Nhưng trước khi bắt tay, bạn cần hai
+thứ, và AI Handbook cấp cả hai: một **ngôn ngữ chung** để cả team "dùng AI" ra một kiểu, và
+một **hợp đồng cá nhân** để bạn biết mình sẽ làm việc với AI theo luật nào.
 
-1. **Nguyên tắc** (ch.00): AI hỗ trợ, con người quyết định. Không dùng AI chỉ vì có
-   thể. Output AI luôn phải kiểm chứng. Tool phục vụ công việc, không phải ngược lại.
-2. **Cách định hướng** (ch.13): không cần đọc handbook từ đầu đến cuối — vào theo
-   vai trò và nhu cầu.
-3. **Thông điệp cốt lõi** (ch.14): `Understand → Decide → Use AI → Control → Verify →
-   Automate → Measure`.
+Tình huống ai cũng gặp: trong team, người thì copy nguyên output AI vào Confluence, người
+thì ngại AI không dính vào, người thì hỏi lung tung rồi tin hết. Chất lượng và rủi ro mỗi
+người mỗi kiểu. Chương 00 của handbook đặt ra **bốn nguyên tắc** làm bộ lọc cho mọi quyết
+định dùng AI suốt khoá:
 
-Module này dành thời gian để bạn **chốt thỏa thuận ban đầu** — để các module sau có
-một điểm tựa chung thay vì mỗi người mỗi kiểu.
+| # | Nguyên tắc | Ý nghĩa thực tế |
+|---|---|---|
+| 1 | **AI hỗ trợ, con người quyết định** | Quyết định nghiệp vụ thuộc về bạn, không nhường AI |
+| 2 | **Chỉ dùng AI khi có lý do** | Không "dùng AI" chỉ vì có thể |
+| 3 | **Output AI luôn phải kiểm chứng** | Output là đề xuất, không phải sự thật |
+| 4 | **Tool phục vụ công việc** | Không để công việc cong đuôi theo tool |
+
+Bốn câu nghe hiển nhiên, nhưng chính chúng là thứ bạn quay lại mỗi khi phân vân. Thử đặt
+một câu hỏi đơn giản: *"nên để AI viết toàn bộ AC rồi copy vào Confluence không?"* Đã có
+nguyên tắc 3 và 1, câu trả lời rõ từ trước khi bàn thêm.
 
 ```mermaid
 flowchart LR
-    H0["ch.00 · Start Here<br/>Mục đích + Nguyên tắc"] --> HK["ch.13 · Cách đọc<br/>theo vai trò"]
+    H0["ch.00 · Start Here<br/>Mục đích + 4 nguyên tắc"] --> HK["ch.13 · Cách đọc<br/>theo vai trò"]
     HK --> HC["ch.14 · Core Message<br/>Understand → Measure"]
     H0 --> AG["Personal AI<br/>Code of Conduct"]
     HC --> AG
@@ -40,141 +46,78 @@ flowchart LR
 
 ---
 
-## LESSON 1.1 — Mục đích & nguyên tắc
+## Hai việc phải làm
 
-### 1. Vấn đề
+### Việc 1 — Chốt "hợp đồng" với chính mình
 
-Trong team, mỗi người "dùng AI" mỗi kiểu: người thì copy nguyên output vào Confluence,
-người thì ngại AI, người thì hỏi lung tung rồi tin hết. Không có nguyên tắc chung → chất
-lượng và rủi ro khó lường.
+Trước khi học thuật ngữ, hãy viết một **Personal AI Code of Conduct** — lời cam kết riêng:
+**3 điều bạn sẽ luôn làm + 2 điều bạn sẽ không bao giờ làm** với AI, dựa trên bốn nguyên
+tắc trên. Ví dụ:
 
-### 2. Vì sao quan trọng
+- **Sẽ:** kiểm chứng mọi output trước khi dùng; chỉ dùng AI khi có lý do rõ; ghi lại nguồn
+  cho mọi thứ AI sinh ra.
+- **Sẽ không:** copy nguyên output vào tài liệu nghiệp vụ mà không đọc lại; giao quyết định
+  nghiệp vụ cho AI làm một mình.
 
-Bốn nguyên tắc của chương 00 là **bộ lọc** cho mọi quyết định xuyên suốt khoá.
+Cam kết này theo bạn suốt khoá, và được đem ra đối chiếu ở Capstone (Module 9) — để thấy
+mình giữ lời hay đã đổi luật giữa chừng.
 
-### 3. Kiến thức tối thiểu (ch.00)
+### Việc 2 — Biết đọc handbook đúng chỗ
 
-Bốn nguyên tắc:
+AI Handbook có 14 chương — đọc từ đầu đến cuối sẽ mất thời gian và mau quên. Chương 13
+dạy bạn **đọc theo vai trò và nhu cầu**: đang BA thì mở phần BA, đang Tester thì mở phần
+Tester, không tin output thì mở phần Validation.
 
-- **AI hỗ trợ, con người quyết định.**
-- **Không dùng AI chỉ vì có thể dùng.**
-- **Output AI luôn phải được kiểm chứng.**
-- **Tool phục vụ công việc, không phải công việc phục vụ tool.**
-
-### 4. Sơ đồ tư duy
-
-```mermaid
-flowchart LR
-    R1["AI hỗ trợ<br/>Người quyết định"] --> C["CHỌN LỌC<br/>Mọi quyết định dùng AI"]
-    R2["Chỉ dùng khi<br/>có lý do"] --> C
-    R3["Output AI<br/>phải kiểm chứng"] --> C
-    R4["Tool phục vụ<br/>công việc"] --> C
-```
-
-### 5. Demo thực chiến
-
-Trainer đưa 4 tình huống thật, học viên áp 4 nguyên tắc để hoặc chấp nhận hoặc từ chối
-việc dùng AI — ví dụ: "nên để AI viết toàn bộ AC rồi copy vào Confluence không?"
-
-### 6. Thực hành có hướng dẫn
-
-Viết **Personal AI Code of Conduct** — bản cam kết 3 điều bạn sẽ luôn làm và 2 điều
-bạn sẽ không bao giờ làm với AI (dựa trên 4 nguyên tắc).
-
-### 7. Nhiệm vụ thật
-
-Lưu cam kết cá nhân (trong `/lab/personal-map.md` hoặc file riêng). Đây là tài liệu
-get đối chiếu lại ở Capstone (M9).
-
-### 8. Kiểm chứng
-
-- [ ] Nêu đúng 4 nguyên tắc bằng lời của bạn.
-- [ ] Cam kết có ít nhất 3 "sẽ làm" và 2 "sẽ không".
-
-### 9. Đo lường
-
-Số nguyên tắc phát biểu lại đúng khi trainer hỏi lại 1 tuần sau (giữ ở Capstone).
-
-### 10. Ghi chép & tái sử dụng
-
-Code of Conduct này theo bạn suốt các module sau như một lời nhắc, và được kiểm tra
-lại ở M9.4 (retrospective).
-
----
-
-## LESSON 1.2 — Cách đọc & map công việc
-
-### 1. Vấn đề
-
-Handbook 14 chương. Đọc từ đầu đến cuối sẽ mất thời gian và mau quên. Thực tế, bạn chỉ
-cần đọc đúng chương cho hoàn cảnh hiện tại.
-
-### 2. Vì sao quan trọng
-
-Biết **đọc gì khi nào** giúp bạn dùng handbook đúng lúc thay vì lạc trong lý thuyết.
-
-### 3. Kiến thức tối thiểu (ch.13)
-
-| Khi bạn muốn | Đọc |
+| Khi bạn muốn | Đọc chương nào |
 |---|---|
-| Hiểu AI | ch.01 AI Foundation |
-| Biết cách dùng AI | ch.02 Working with AI |
-| Đang làm BA | ch.03 BA Work |
-| Đang làm Tester | ch.04 Tester Work |
-| Tự động hoá | ch.06 Automation |
-| Gặp vấn đề cụ thể | ch.12 Playbooks |
-| Không tin output | ch.05 Validation |
-
-### 4. Sơ đồ tư duy
+| Hiểu AI | ch.01 — AI Foundation |
+| Biết cách dùng AI | ch.02 — Working with AI |
+| Đang làm BA | ch.03 — BA Work |
+| Đang làm Tester | ch.04 — Tester Work |
+| Tự động hoá | ch.06 + ch.07 |
+| Không tin output | ch.05 — Validation |
+| Gặp vấn đề cụ thể | ch.12 — Playbooks |
 
 ```mermaid
 flowchart LR
-    ROLE{"Tôi là / đang làm gì?"}
+    ROLE{"Tôi đang là / làm gì?"}
     ROLE -- BA --> C3["ch.03 BA Work"]
     ROLE -- Tester --> C4["ch.04 Tester Work"]
-    ROLE -- Automate --> C6["ch.06 + ch.07"]
+    ROLE -- Automate --> C6["ch.06 + 07"]
     ROLE -- Không tin output --> C5["ch.05 Validation"]
-    ROLE -- Cần bắt đầu --> C0["ch.00 + ch.13 + ch.14"]
+    ROLE -- Cần bắt đầu --> C0["ch.00 + 13 + 14"]
 ```
 
-### 5. Demo thực chiến
-
-Trainer lấy một tình huống ("sáng mai tôi phải viết test case cho payment timeout") →
-học viên xác định đọc ch.04.3 + ch.12 → mở playbook tương ứng.
-
-### 6. Thực hành có hướng dẫn
-
-Liệt kê **5 việc thật** bạn làm hàng ngày với tư cách BA/Tester. Với mỗi việc, chọn
-chương handbook bạn sẽ đọc khi cần xử lý nó.
-
-### 7. Nhiệm vụ thật
-
-**`/lab/personal-map.md`** — bảng: `việc của tôi | vai trò | chương handbook | module liên quan`.
-
-### 8. Kiểm chứng
-
-- [ ] Mọi việc được map vào ít nhất 1 chương handbook.
-- [ ] Bảng phân biệt đường của BA và đường của Tester (nếu bạn làm cả hai, ghi rõ).
-
-### 9. Đo lường
-
-Thời gian tìm đúng chương cho một việc mới (mục tiêu < 1 phút nhờ bảng map).
-
-### 10. Ghi chép & tái sử dụng
-
-Bảng map này cập nhật theo vai trò; về cuối khoá (M9) bạn sẽ thấy nó trùng với
-Playbook M4.7 và Workflow M9.2 — dấu hiệu hệ thống đã "khớp".
+**Thực hành:** liệt kê **5 việc thật** bạn làm hằng ngày với tư cách BA/Tester (ví dụ: viết
+test case cho payment timeout), và với mỗi việc, chọn chương handbook bạn sẽ mở khi cần xử
+lý nó. Gom hết vào một **bảng cá nhân** — về cuối khoá, bạn sẽ thấy nó trùng khớp với
+Playbook ở Module 4 và Workflow ở Module 9, dấu hiệu hệ thống đã "khớp" chung một luồng.
 
 ---
 
-## Hết Module 1 — bạn có gì?
+## Thông điệp cốt lõi
 
-1. **Personal AI Code of Conduct** — lời cam kết làm việc với AI.
-2. **`/lab/personal-map.md`** — bản đồ công việc → chương handbook.
-3. **Hiểu ngôn ngữ chung** — bốn nguyên tắc + cách định hướng + core message.
+Chương 14 tóm cả handbook bằng một chuỗi bảy bước:
 
-**Cầu sang M2:** Bạn đã thống nhất "chơi theo luật nào". Giờ bắt đầu hiểu **AI thật sự
-là gì và nó sai ở đâu** — nền cho mọi quyết định sau này.
+```text
+Understand → Decide → Use AI → Control → Verify → Automate → Measure
+```
 
-> Nhớ: **Do not delegate thinking. Delegate work.** — đây là câu sắp xuyên suốt
-> toàn bộ khoá học.
+Đây chính là khung bạn sẽ lần theo từng module của khoá: hiểu trước, quyết định sau, rồi
+mới giao việc cho AI, kiểm soát, kiểm chứng, tự động hoá, và cuối cùng đo lường. Mọi thứ
+gói vào một câu châm ngôn xuyên suốt toàn khoá:
+
+> **Do not delegate thinking. Delegate work.**
+>
+> Bạn giữ việc nghĩ — quyết định và đánh giá. AI nhận phần việc — chạy và dọn tầng.
+
+---
+
+## Di sản của bạn sau Module 1
+
+1. **Personal AI Code of Conduct** — lời cam kết làm việc với AI, đối chiếu lại ở Capstone.
+2. **`/lab/personal-map.md`** — bản đồ "việc của tôi → chương handbook → module liên quan".
+3. **Ngôn ngữ chung** — bốn nguyên tắc + cách định hướng + core message.
+
+Giờ bạn đã thống nhất *chơi theo luật nào*. Chương tiếp bắt đầu lột xác thứ bạn đang dùng
+mỗi ngày: **AI thật sự là gì, và nó sai ở đâu** — nền cho mọi quyết định sau này.

@@ -1,106 +1,95 @@
 # MODULE 3 — Working with AI: Prompt + Context + Rule
 
-> **Pha:** 2 · AUGMENT — Đưa AI vào công việc hàng ngày, có kiểm soát
+> **Pha:** 2 · AUGMENT — đưa AI vào công việc hàng ngày, có kiểm soát
 >
 > **Năng lực cốt lõi:** Prompt · Context · Control
 >
 > **AI Handbook:** ch.02 (Working with AI — Prompt · Context · Rule · Output)
 >
-> **ISTQB CT-GenAI:** Chương 2 (GenAI-2.1.1 → 2.1.3, 2.3.2) + GenAI-3.1.4, 3.2.3
+> **ISTQB CT-GenAI:** Chương 2 (GenAI-2.1.1 → 2.1.3, 2.3.2) · GenAI-3.1.4, 3.2.3
 >
-> **Project xuyên suốt:** E-commerce Checkout · **Tool:** Claude
+> **Project xuyên suốt:** E-commerce Checkout
 >
-> **Asset xuất ra:** `/prompt` `/context` `/rules` `/output` (structured)
+> **Asset xuất ra:** `/prompt` `/context` `/rules` `/output`
 >
 > **Thời lượng đề xuất:** 5 giờ
 
-- **Mục tiêu module:** Biến Prompt/Context từ "biết dùng" thành **bộ AI working assets**
-  (`/prompt` `/context` `/rules`) có structured output — tái dùng được.
-- **Bám handbook ch.02:** *Prompt nói phải làm gì. Context nói dựa vào thông tin nào.
-  Rules chống tự suy diễn. Output format quyết định có xử lý tiếp được hay không.*
-- **Vì sao cần:** M2 thấy AI bịa khi thiếu context. M3 siết chuỗi Prompt + Context +
-  Rule theo đúng lỗ hổng trong Limitation Report.
-- **Spiral:** Prompt/Context từ **Cơ bản → Có kiểm soát** (+ Example + Rule).
+---
+
+## Vì sao có module này
+
+Sau Module 2, bạn biết cách hỏi một lần cho tử tế — thêm bối cảnh, yêu cầu format, soi
+output theo "Đúng / Bịa / Lệch". Nhưng làm từng lần như vậy chưa đủ: **mỗi lần bạn lại hỏi
+một kiểu**, không đo được cải thiện, và không ai bàn giao được. Module này biến cách hỏi ấy
+thành **một bộ tài sản AI tái dùng được** — và đó là thứ bạn mang theo suốt phần còn lại
+của khoá.
+
+Tư tưởng xuyên suốt rất gọn, chỉ bốn vai trong một lần làm việc với AI:
+
+| Vai | Trả lời câu hỏi |
+|---|---|
+| **Prompt** | Phải làm gì? |
+| **Context** | Dựa vào thông tin nào? |
+| **Rule** | Ngăn AI tự suy diễn thế nào? |
+| **Output format** | Kết quả có dùng tiếp được không? |
+
+```mermaid
+flowchart LR
+    P["Prompt<br/>phải làm gì"] --> C["Context<br/>dựa vào thông tin nào"]
+    C --> R["Rule<br/>chống tự suy diễn"]
+    R --> O["Output format<br/>máy đọc tiếp được"]
+```
 
 ---
 
-## LESSON 3.1 — Prompt (6 thành phần + few-shot)
+## Prompt — giao việc theo một khuôn sáu phần
 
-### 1. PROBLEM
-Prompt M2 vẫn cho output lệch format hoặc thiếu edge payment timeout. Bạn sửa tay từng
-lần — không có "prompt chuẩn" cho Checkout.
-
-### 2. WHY IT MATTERS
-Không có prompt chuẩn → mỗi người một kiểu → không đo được cải thiện, không bàn giao.
-
-### 3. MINIMUM THEORY
-**Spiral:** M2 học mức Task/Context/Constraint/Format (ch.02.1). **Mức mới (ch.02.1
-nâng cấp + ch.02.4):** thêm **Example** (few-shot) + tách **Role** rõ (BA vs Tester).
+Một câu "chỉ bảo làm gì" thường chưa đủ. Khi cần đầu ra **ổn định và bàn giao được** —
+đặc biệt trong công việc BA/Tester — hãy sắp theo khuôn sáu vị trí:
 
 ```text
-Role → Task → Context → Constraint → Example → Format
+ROLE          → bạn là ai với AI (BA hay Tester)
+TASK          → một việc, một lần, rõ ràng
+CONTEXT       → trỏ tới /context (không paste lung tung)
+CONSTRAINT    → ràng buộc bắt buộc
+RULE          → trỏ tới /rules
+EXAMPLE       → một mẫu ĐÚNG để AI bắt chước (few-shot)
+FORMAT        → bảng | JSON
 ```
 
-### 4. DIAGRAM
+Cái khiến nhiều prompt "lệch format" nhất chính là thiếu **Example**: chỉ cần một dòng mẫu
+test condition, AI theo đúng cấu trúc đó thay vì bịa ra một kiểu trình bày riêng. Và **Role**
+quan trọng vì cùng một công việc — "sinh test condition" — BA và Tester sẽ nhìn khác nhau.
 
-```text
-ROLE (BA | Tester)
-   ↓
-TASK (một việc / một lần)
-   ↓
-CONTEXT (pointer tới /context)
-   ↓
-CONSTRAINT + RULE (pointer tới /rules)
-   ↓
-EXAMPLE (1 mẫu đúng)
-   ↓
-FORMAT (bảng | JSON)
-   ↓
-OUTPUT
-```
+Ngoài khuôn sáu phần, có **ba kỹ thuật nâng tầm** giúp prompt của bạn lên cấp vận hành:
 
-### 5. LIVE DEMO
-Prompt không Example vs có 1 dòng mẫu test condition → so độ ổn định format.
-
-### 6. GUIDED PRACTICE
-Viết prompt "sinh Test Conditions Checkout" đủ 6 phần. Chạy 2 lần, so lệch.
-
-### 7. REAL TASK
-**`/prompt/checkout-test-conditions.md`** — version v1 có Example.
-
-### 8. VALIDATE
-- [ ] Đủ 6 phần · [ ] Role rõ · [ ] 2 lần chạy cùng format
-
-### 9. MEASURE
-| | Không Example | Có Example |
+| Kỹ thuật | Cơ chế | Dùng khi |
 |---|---|---|
-| Lần sửa format | ___ | ___ |
-| Thời gian đến bản ổn | ___ | ___ |
+| **Chaining** | Chia việc lớn thành chuỗi bước, mỗi bước nhận output bước trước, có điểm check của người giữa các bước | Việc nhiều bước cần xác nhận giữa chừng |
+| **Meta prompting** | Dạy AI *cách viết prompt* cho một việc | Muốn chuẩn hoá một loạt task giống nhau |
+| **System vs User** | Tách vai trò + luật bất biến (system) khỏi dữ liệu từng lần (user) | Prompt dùng lặp lại, muốn ổn định |
 
-### 10. DOCUMENT & REUSE
-`/prompt/checkout-test-conditions.md` → dùng lại 3.4, M4.
+```mermaid
+flowchart LR
+    T["Task lớn"] --> Q{"Nhiều bước<br/>cần verify?"}
+    Q -- Có --> CH["Chaining<br/>prompt 1 → check → prompt 2"]
+    Q -- Không --> S["1 prompt có<br/>system + rule"]
+```
 
-**Hạng mục:** Role · Task · Example · Versioning prompt
+**Thực hành:** viết prompt "sinh test conditions Checkout" đủ sáu phần, chạy hai lần và so
+độ lệch format. Hai kỹ thuật chaining và split system/user chính là nền để Module 4 chia
+công việc BA/Tester thành những bước AI xử lý tốt.
 
 ---
 
-## LESSON 3.2 — Context pack (ch.02.2)
+## Context — đóng gói "nguyên liệu" đúng
 
-### 1. PROBLEM
-Mỗi lần bạn paste lại cả req vào Claude — sót rule tồn kho — AI lại bịa voucher như M2.
+Thiếu context thì AI "bịa theo kiến thức chung" — bạn đã thấy ở Module 2. Nhưng cách sửa
+qua loa, pasting cả đoạn yêu cầu vào mỗi lần hỏi, cũng dở không kém: **bạn sót một rule tồn
+kho**, và AI lại tái tạo lỗi cũ.
 
-### 2. WHY IT MATTERS
-**Ch.02.2:** *Context nói dựa vào thông tin nào để làm.* Context rời rạc = hallucination
-lặp lại. Cần **context pack** cố định.
-
-### 3. MINIMUM THEORY
-**Context pack** = bộ tài liệu gắn kèm prompt: Requirement, Spec/BR, AC, Existing tests,
-Bug history (nếu có).
-
-**Spiral Context:** M2 = "đưa thêm thông tin". M3 = **đóng gói + đặt tên file + checklist
-thiếu gì**.
-
-### 4. DIAGRAM
+Giải pháp là một **context pack** — thư mục cố định gắn kèm mọi prompt liên quan đến một
+nghiệp vụ:
 
 ```text
 /context/checkout/
@@ -108,193 +97,110 @@ thiếu gì**.
   ├── business-rules.md
   ├── acceptance-criteria.md
   ├── existing-tests.md      (có thể trống ở đầu khoá)
-  └── bug-history.md         (optional)
+  └── bug-history.md         (tuỳ chọn)
 ```
 
-### 5. LIVE DEMO
-Cùng prompt; lần 1 không BR; lần 2 có `/context/business-rules.md` → đếm hallucination.
+Quy tắc vàng: **context là nguồn chân lý (source of truth)**. Bạn không paste lung tung nữa —
+bạn trỏ tới file, và mọi thứ ngoài pack đều "không có trong bối cảnh".
 
-### 6. GUIDED PRACTICE
-Tạo 3 file: requirement, business-rules, AC (tối thiểu) cho Checkout.
-
-### 7. REAL TASK
-Hoàn thiện folder `/context/checkout/` — ghi README liệt kê nguồn (ai viết, ngày).
-
-### 8. VALIDATE
-- [ ] Mỗi file ≤ phạm vi Checkout · [ ] BR không chứa giả định chưa confirm · [ ] README có nguồn
-
-### 9. MEASURE
-Hallucination / 10 dòng output: trước pack ___ · sau pack ___
-
-### 10. DOCUMENT & REUSE
-`/context/checkout/**` → mọi lesson sau chỉ reference, không paste lung tung.
-
-**Hạng mục:** Context pack · Source of truth · Scope context
+**Demo trực tiếp:** cùng một prompt, lần một **không** có `business-rules.md`, lần hai **có**;
+đếm số hallucination giảm đi. Đó là bằng chứng bạn cần để từ nay "chỉ reference, không paste".
+Lưu ý nhỏ về phạm vi: mỗi file trong pack phải nằm trong phạm vi Checkout, và business-rules
+không chứa giả định chưa được xác nhận.
 
 ---
 
-## LESSON 3.3 — Rules (chống bịa) (ch.02.3)
+## Rule — chống AI bịa bằng quy tắc cứng
 
-### 1. PROBLEM
-Limitation Report mục 8: AI hay bịa voucher & refund. Chưa có rule cứng để Claude tuân.
+Limitation Report ở Module 2 để lại cho bạn một danh sách chỗ AI hay bịa — ví dụ *"voucher
+đổi trả"* chui vào dù tài liệu không nói. Đây là nơi danh sách đó thành **rule**: một ràng
+buộc bắt buộc, có giá trị với cả AI lẫn người review. Vài ví dụ cho Checkout:
 
-### 2. WHY IT MATTERS
-**Ch.02.3:** *Rules dùng khi không muốn AI tự suy diễn.* Rule là lớp kiểm soát rẻ nhất
-trước khi vào Validation (M5).
-
-### 3. MINIMUM THEORY
-**Rule** = ràng buộc bắt buộc với AI (và người review). Ví dụ:
-- Không invent business rules.
-- Mọi test case phải reference requirement ID.
-- Chỉ payment methods có trong context.
+- Không **invent** business rule nào ngoài context.
+- Mọi test case phải kèm `req_id`/`ac_id`.
+- Chỉ dùng payment method có trong context.
 - Nếu thiếu thông tin → liệt kê **Open Questions**, không đoán.
 
-**Spiral Rule:** lần đầu xuất hiện (M3).
-
-### 4. DIAGRAM
-
-```text
-PROMPT + CONTEXT
-        ↓
-      RULES  ──→ AI phải tuân
-        ↓
-     OUTPUT
-        ↓
-  Rule check (Pass/Fail thủ công ở M3; tư duy hoá ở M5)
+```mermaid
+flowchart TD
+    PROMPT["Prompt + Context"] --> R[("RULES<br/>/rules")] --> OUT["OUTPUT"]
+    OUT --> CHECK["Rule check<br/>Pass/Fail (M3 thủ công → M5 hoá quy trình)"]
 ```
 
-### 5. LIVE DEMO
-Chạy cùng prompt: không rule vs có rule "không invent; thiếu thì Open Questions".
+Viết đủ ít nhất **8 rule** cho Checkout, phân loại theo mục đích:
 
-### 6. GUIDED PRACTICE
-Viết ≥8 rules cho Checkout (BA + Tester). Phân loại: Content / Traceability / Format / Safety.
-
-### 7. REAL TASK
-**`/rules/checkout-ai-rules.md`** v1 — gắn link từ Limitation Report (rule nào vá
-hallucination nào). Mỗi lỗi M2 có ≥1 rule đối ứng.
-
-### 8. VALIDATE
-- [ ] ≥1 rule chống invent · [ ] ≥1 rule traceability · [ ] ≥1 rule "hỏi thay vì đoán"
-· [ ] Map được sang hallucination log M2
-
-### 9. MEASURE
-Số hallucination trên cùng bài 8 test case: trước rule ___ · sau rule ___
-
-### 10. DOCUMENT & REUSE
-`/rules/checkout-ai-rules.md` → M4, M5, M7.
-
-**Hạng mục:** AI Rules · Traceability · Open Questions
-
----
-
-## LESSON 3.4 — Structured output (ch.02.4)
-
-### 1. PROBLEM
-Claude trả đoạn văn — khó so sánh, khó đưa vào test management / Excel / JSON pipeline.
-
-### 2. WHY IT MATTERS
-**Ch.02.4:** *Output format dùng khi output sẽ được tiếp tục xử lý hoặc đưa sang tool
-khác.* Structured output = điều kiện để Measure & Validation đếm được.
-
-### 3. MINIMUM THEORY
-Ưu tiên: **Table** (review người) và **JSON** (máy/parse). Schema phải nằm trong prompt.
-
-**Spiral Structured Output:** lần đầu (M3).
-
-### 4. DIAGRAM
-
-| Manual (ghi note tự do) | AI text dài | AI structured |
+| Loại | Ý nghĩa | Ví dụ |
 |---|---|---|
-| Khó aggregate | Khó diff | Diff/count được |
+| **Content** | Không thêm nội dung ngoài pack | Không thêm payment method mới |
+| **Traceability** | Mọi thứ phải có nguồn | TC kèm req_id/ac_id |
+| **Format** | Đúng cấu trúc trả về | JSON theo schema |
+| **Safety** | Không PII, không giả định rủi ro | Không dùng email thật |
 
-### 5. LIVE DEMO
-Schema test case JSON: `id, req_id, title, preconditions, steps[], expected, priority`.
-
-### 6. GUIDED PRACTICE
-Ép Claude trả đúng schema; nếu sai field → sửa prompt Format, không sửa tay từng field.
-
-### 7. REAL TASK
-**`/prompt/checkout-testcases-json.md`** + sample `/output/checkout-tc-sample.json`.
-
-### 8. VALIDATE
-- [ ] Parse được JSON · [ ] Mọi TC có `req_id` · [ ] Không field ngoài schema
-
-### 9. MEASURE
-Thời gian đưa vào sheet/tool: text tự do ___ · JSON ___
-
-### 10. DOCUMENT & REUSE
-Prompt JSON + sample → M4 (AI for Tester), M6 (map sang Playwright).
+Rồi **map từng rule vào một lỗi trong Limitation Report** — mỗi lỗi M2 phải có ít nhất một
+rule đối ứng. Rule nào không vá được một lỗi thật thì đừng giữ: rulebook là công cụ, không
+phải trưng bày. Rule là lớp kiểm soát **rẻ nhất** bạn có trước Validation (Module 5): nó
+chặn lỗi từ cửa ngõ, thay vì chờ người review ở cuối dây chuyền.
 
 ---
 
-## LESSON 3.5 — Chaining + Meta prompting + System/User
+## Output format — trả về thứ máy đọc được
 
-### 1. PROBLEM
-Một việc lớn giao một prompt duy nhất → quá tải context, kết quả dở. Chưa biết tách hay
-gộp prompt.
+Để AI trả một đoạn văn dài, bạn lấy gì mà **so sánh**, lấy gì mà **đếm**? Output văn tự do
+là kẻ thù của mọi thứ đo lường và của mọi pipeline (test management, Excel, JSON).
 
-### 2. WHY IT MATTERS
-**ch.02 + GenAI-2.1.2, 2.1.3:** ba kỹ thuật lõi — chaining (tách bước), meta prompting
-(prompt viết prompt), system vs user prompt (vai trò + dữ liệu). Chọn đúng kỹ thuật =
-output ổn định và tái dùng được.
+Nguyên tắc: **format do bạn quyết định ngay trong prompt**, ưu tiên hai dạng — **Table** (khi
+người review) và **JSON** (khi máy parse tiếp). Ví dụ schema cho test case Checkout:
 
-### 3. MINIMUM THEORY
-- **Chaining:** chia task lớn thành chuỗi bước, mỗi bước output là input bước sau — có
-  human verify giữa các bước.
-- **Meta prompting:** dạy AI cách xây prompt cho một việc — hữu khi muốn chuẩn hoá.
-- **System vs User:** system = vai trò + luật bất biến; user = dữ liệu/dấu hiệu từng lần.
+```json
+{ "id", "req_id", "title", "preconditions", "steps[]", "expected", "priority" }
+```
 
-### 4. DIAGRAM
+| Ghi note tự do | AI text dài | AI structured |
+|---|---|---|
+| Khó tổng hợp | Khó so sánh/diff | Diff, đếm, parse được |
+
+Mấu chốt của structured output: **không sửa tay từng field**. Nếu AI trả field lạ hoặc sai
+dạng, bạn sửa **Prompt Format** (gõ lại schema/điều kiện) rồi chạy lại — sửa prompt một lần
+giữ được cấu trúc hàng trăm output sau đó, còn sửa tay thì phải sửa mãi mãi.
+
+---
+
+## Gộp lại — một chuỗi dùng lại được
+
+Cuối module, bạn có bốn mảnh ghép khớp nhau thành một chuỗi tái dùng được cho Checkout:
+
+```text
+/context/checkout/              ← nguyên liệu (source of truth)
+/rules/checkout-ai-rules.md     ← quy tắc chống bịa
+/prompt/checkout-*.md           ← prompt chuẩn, có Example + Format
+/output/checkout-*.json         ← output structured để máy đọc tiếp
+```
 
 ```mermaid
 flowchart LR
-    A["Task lớn"] --> C{"Có nhiều bước<br/>cần verify?"}
-    C -- Có --> CH["Chaining<br/>prompt 1 → verify → prompt 2"]
-    C -- Không --> M["Meta prompting<br/>hoặc 1 prompt có system"]
+    A["/context<br/>source of truth"] --> P["/prompt<br/>chuẩn + Example"]
+    R["/rules<br/>chống bịa"] --> P
+    P --> O["/output<br/>JSON structured"]
 ```
 
-### 5. LIVE DEMO
-Giải "sinh test case có source" bằng chaining: bước 1 extract rule → verify → bước 2
-sinh TC → verify.
-
-### 6. GUIDED PRACTICE
-1 việc giải bằng chaining; viết 1 system prompt cho vai "BA review requirement".
-
-### 7. REAL TASK
-1 prompt chaining + 1 system prompt (lưu `/prompt/`).
-
-### 8. VALIDATE
-- [ ] Chọn đúng kỹ thuật cho task.
-- [ ] Chaining có điểm verify giữa bước.
-
-### 9. MEASURE
-Thời gian và số vòng sửa: 1 prompt dài vs chaining.
-
-### 10. DOCUMENT & REUSE
-Kỹ thuật này quyết định cách M4 chia việc BA/Tester thành các bước.
+Module 4 sẽ **gọi** những asset này chứ không viết prompt ad-hoc nữa; Module 5 tái dùng
+/rules + /output để dựng **cổng validation có số liệu**. Đây là khoảnh khắc hệ thống bắt
+đầu "đứng dậy": bạn không còn phụ thuộc tài năng từng người, mà vào một bộ tài sản có cấu
+trúc, ai cũng chạy lại được.
 
 ---
 
-## TỔNG KẾT MODULE 3
+## Di sản của bạn sau Module 3
 
-### Output
-| Asset | Path |
+| Asset | Nội dung |
 |---|---|
-| Prompt TC conditions | `/prompt/checkout-test-conditions.md` |
-| Prompt TC JSON | `/prompt/checkout-testcases-json.md` |
-| Context pack | `/context/checkout/` |
-| AI Rules | `/rules/checkout-ai-rules.md` |
-| Sample JSON | `/output/checkout-tc-sample.json` |
-| Chaining + system prompt | `/prompt/` |
+| `/prompt/checkout-test-conditions.md` | Prompt TC conditions có Example + version |
+| `/prompt/checkout-testcases-json.md` | Prompt TC JSON theo schema |
+| `/context/checkout/` | Context pack: requirement, business-rules, AC |
+| `/rules/checkout-ai-rules.md` | Rulebook ≥8 rule, map sang từng lỗi M2 |
+| `/output/checkout-tc-sample.json` | Sample JSON chuẩn schema, parse được |
+| Chaining + system prompt | 1 chuỗi prompt + 1 system prompt dùng lại |
 
-### Dùng lại M4
-Playbook BA/Tester chỉ **gọi** các asset trên — không viết prompt ad-hoc.
-
-### Spiral sau M3
-| Khái niệm | Mức |
-|---|---|
-| Prompt | **Có kiểm soát** (Role+Example+version) |
-| Context | **Pack có cấu trúc** |
-| Rule | **Cơ bản** (v1 file rules) |
-| Structured Output | **Cơ bản** (JSON/Table) |
-| Hallucination | vẫn Cơ bản — giảm bằng Rule (chưa Validation formal) |
+> Một prompt đẹp thiếu context chỉ là kiến thức chung gói gọn đẹp.
+> Một context thiếu rule để AI biến nó thành quyết định đúng thì vẫn là bãi nguyên liệu.
+> Cả bốn mảnh chắp vào nhau mới thành "cách làm việc với AI".

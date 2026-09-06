@@ -238,47 +238,41 @@ Chương trình cô đọng toàn bộ vào **9 năng lực** — đây cũng ch
 
 ---
 
-## 8. Công thức của mỗi lesson
+## 8. Phong cách từng module
 
-Mọi lesson trong toàn bộ chương trình đi theo **một format duy nhất**
-(10 bước), để người học tập trung vào nội dung thay vì loay hoay với cấu trúc:
+Các module được viết theo **lối handbook** — không theo khuôn cố định 10 bước, mà
+theo mạch tư duy tự nhiên: kể vấn đề thật → giải thích bản chất → chỉ ra cạm bẫy →
+ra việc làm thật. Người viết là người **đã hiểu AI tận gốc rồi truyền đạt lại**,
+nên nội dung chạy theo dòng suy nghĩ, không đếm mục.
+
+Dù viết tự do về giọng điệu, mỗi module vẫn **có bố cục nhìn là thấy**:
+
+1. **Sơ đồ mermaid chốt mỗi mạch** — 2–6 sơ đồ/module đặt tại điểm kết luận, tránh
+   văn dài mất hướng.
+2. **Bảng so sánh & quyết định** — cạm bẫy vs cách né, options vs trade-offs, ở đúng
+   chỗ cần cân nhắc.
+3. **Blockquote** cho thông điệp quyết định, không nằm chìm trong đoạn văn.
+4. **Văn xuôi liền mạch** — câu chữ chạy thành đoạn hoàn chỉnh, không vỡ vụn thành
+   dòng ngắn.
+
+Mỗi module cũng đảm bảo đủ ba thứ:
+
+1. **Problem-first** — mọi chủ đề mở bằng một tình huống công việc thật (không phải
+   theo tool).
+2. **Làm thì phải để lại artifact** — mỗi giai đoạn kết thúc bằng output cụ thể trong
+   repository: prompt, context pack, rulebook, suite test, validation report, log…
+   Không có "hiểu" mà không có "để lại được thứ dùng được".
+3. **Đo mới nói** — có và sau có **số đo** (manual vs AI-assisted, measured vs
+   estimated), kể cả khi số liệu chưa đẹp.
+
+Mạch chung mà mọi module bám theo (về tinh thần, không theo khuôn):
 
 ```text
-PROBLEM → WHY → MINIMUM THEORY → DIAGRAM → DEMO → TOOL
-       → PRACTICE → VALIDATE → MEASURE → REAL PROJECT → REUSE
+Vấn đề → Vì sao → Bản chất → Cạm bẫy → Làm thật → Đo → Ghi chép → Tái dùng
 ```
 
-```mermaid
-flowchart LR
-    P[1. Vấn đề] --> W[2. Vì sao quan trọng]
-    W --> T[3. Kiến thức tối thiểu]
-    T --> D[4. Sơ đồ tư duy]
-    D --> L[5. Demo thực chiến]
-    L --> O[6. Thực hành có hướng dẫn]
-    O --> R[7. Nhiệm vụ thật<br/>ra artifact]
-    R --> V[8. Kiểm chứng<br/>checklist pass/fail]
-    V --> M[9. Đo lường<br/>KPI + bảng số]
-    M --> U[10. Ghi chép &<br/>Tái sử dụng]
-```
-
-Ví dụ — *Lesson "AI tạo Test Case"*:
-
-```text
-Problem    Tester mất 40 phút cho một lô test case lặp lại
-Why        Task lặp lại, tốn effort, dễ sót biên
-Theory     Test design + AI limitation (hallucination)
-Diagram    Manual flow vs AI flow
-Demo       AI sinh test case trực tiếp
-Tool       Claude + context pack
-Practice   Học viên tự viết prompt theo 6 thành phần
-Validate   Rule check + Ground truth + Human review
-Measure    40 phút → 18 phút; % TC pass review lần 1
-Real       Checkout: sinh test case thật
-Reuse      Prompt vào Prompt Library / Playbook
-```
-
-**Artifact luôn phải có.** Mỗi lesson kết thúc bằng một output cụ thể trong
-repository — không có "hiểu" mà không có "để lại được thứ dùng được".
+Người học không phải chiến đấu với cấu trúc — tiêu đề và sơ đồ dẫn đường sẵn, người
+đọc chỉ cần tập trung vào việc học và tiếp thu.
 
 ---
 
@@ -337,7 +331,7 @@ Cấu trúc tri thức của chương trình dựa trên ba lớp, mỗi lớp m
 | **AI Handbook** (14 chương, đi kèm) | Ngôn ngữ chung, nguyên tắc, playbook | Xương sống của mọi module |
 | **ISTQB CT-GenAI Syllabus v1.1** | Knowledge foundation — khung khái niệm, risks, LLM infrastructure, chiến lược triển khai | Mỗi module gắn học phần ISTQB tương ứng (`GenAI-x.y.z`) |
 | **Mark Winteringham — *Software Testing with Generative AI*, Manning, 2024** | Practical testing reference — cách AI hỗ trợ thực tế từng hoạt động test | Bám vào các lesson thực hành M3–M8 |
-| **Project + Measurement + Validation** | Cơ chế biến kiến thức thành năng lực | Toàn bộ, qua format 10 bước và artifact bắt buộc |
+| **Project + Measurement + Validation** | Cơ chế biến kiến thức thành năng lực | Toàn bộ, qua lối học problém-first có artifact bắt buộc |
 
 > **Đọc thêm về khung tham chiếu:** `docs/curriculum/BLUEPRINT.md` — bảng
 > quản lý chính thức Phase → Module → Lesson → Objective → Theory → Practice

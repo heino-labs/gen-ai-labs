@@ -6,9 +6,9 @@
 > đối chiếu coverage với **AI Handbook** (14 chương) và **ISTQB CT-GenAI v1.1**,
 > và cải tiến khoá sau.
 >
-> Mỗi dòng trong bảng là **một lesson**. Một lesson = một phiên thực hành
-> theo format 10 bước (PROBLEM → WHY → THEORY → DIAGRAM → DEMO → TOOL →
-> PRACTICE → VALIDATE → MEASURE → REAL PROJECT → REUSE).
+> Mỗi dòng trong bảng là **một lesson** — một phiên thực hành. Các module được
+> viết theo lối handbook tự do (problem-first, có artifact, có số đo), không kẹt
+> vào một khuôn mục cố định.
 >
 > Ký hiệu **ch.Y** = chương trong AI Handbook (xương sống nội dung).
 
@@ -24,7 +24,7 @@
 | Công cụ AI chính | Claude (thống nhất theo đội; có thể thay ChatGPT/Copilot) |
 | Công cụ automation | Playwright |
 | Cấu trúc | 5 pha (khởi động + 4 giai đoạn) · 9 module · 37 bài học |
-| Định dạng lesson | 10 bước thống nhất, mỗi bài ra 1 artifact bắt buộc |
+| Định dạng lesson | Lối handbook tự do, problem-first; mỗi bài ra 1 artifact bắt buộc |
 | Châm ngôn xương sống | **Do not delegate thinking. Delegate work.** |
 
 ---
