@@ -45,3 +45,4 @@ out
 .tmp_pkgs/
 testwrite_xyz
 qa.js
+package-lock.json

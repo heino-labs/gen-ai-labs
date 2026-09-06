@@ -18,5 +18,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/types/mdx.d.ts"],
-  "exclude": ["node_modules", "theme.config.jsx"]
+  "exclude": ["node_modules"]
 }

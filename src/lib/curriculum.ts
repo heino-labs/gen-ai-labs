@@ -32,8 +32,8 @@ export const courseMeta = {
     tagline: "Problem → Skill → Tool → Practice → Proof",
     description:
         "Học cách lấy việc BA/Tester thủ công, dùng AI đúng chỗ, kiểm soát bằng context/rule, tự động hoá bằng Playwright, rồi chứng minh bằng số liệu.",
-    caseStudy: "E-commerce Checkout",
-    tool: "Claude",
+    approach: "Ví dụ đời thường",
+    tool: "ChatGPT / Claude / Copilot",
     audience: "BA + Tester",
     formula: "Problem → Why → Skill → Tool → Practice → Proof",
 };

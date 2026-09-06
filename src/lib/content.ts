@@ -73,7 +73,7 @@ export const categories: Category[] = [
         title: "AI BA/Tester",
         short: "Khoá AI cho BA/Tester + Playwright",
         description:
-            "Problem → Skill → Tool → Practice → Proof. Tám module, case Checkout.",
+            "Problem → Skill → Tool → Practice → Proof. Tám module, ví dụ đời thường.",
         icon: "Sparkles",
         accent: ["#22d3ee", "#f472b6"],
         status: "live",
@@ -159,7 +159,7 @@ export const posts: Post[] = [
         category: "course",
         title: "Lộ trình AI BA/Tester",
         description:
-            "AI cho BA/Tester + Automation — 8 module, case Checkout.",
+            "AI cho BA/Tester + Automation — 8 module, ví dụ đời thường.",
         readingTime: "3 min",
         updated: "2026-09-06",
         order: 1,
@@ -212,14 +212,6 @@ export function getCategoryForPath(path: string): Category | undefined {
     if (post) return getCategory(post.category);
     const seg = clean.split("/").filter(Boolean)[0];
     return seg ? getCategory(seg) : undefined;
-}
-
-export function featuredPosts(limit = 3): Post[] {
-    const order = ["/linux/setup", "/linux/commands", "/devops/gitlab"];
-    return order
-        .map((s) => posts.find((p) => p.slug === s))
-        .filter((p): p is Post => Boolean(p))
-        .slice(0, limit);
 }
 
 export function getAdjacent(path: string): { prev?: Post; next?: Post } {

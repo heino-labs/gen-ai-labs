@@ -113,9 +113,9 @@ export function CoursePathPage() {
                             className="mt-14 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-wider text-[var(--muted)]"
                         >
                             <div>
-                                <dt className="inline text-[var(--muted)]">Case · </dt>
+                                <dt className="inline text-[var(--muted)]">Cách học · </dt>
                                 <dd className="inline text-[var(--fg-soft)]">
-                                    {courseMeta.caseStudy}
+                                    {courseMeta.approach}
                                 </dd>
                             </div>
                             <div>
@@ -270,7 +270,7 @@ export function CoursePathPage() {
                             Bắt đầu từ nền tảng AI
                         </h2>
                         <p className="mx-auto mt-3 max-w-lg text-[var(--fg-soft)]">
-                            Module 02 · Case study Checkout · Measurement xuyên suốt.
+                            Module 02 · Ví dụ đời thường · Measurement xuyên suốt.
                         </p>
                         <Link
                             href={`/course/${first.slug}`}
